@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\saaym\\Downloads\\WIL-Completed\\WILWebApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8AF35394-5650-47BC-8BCE-49B3E55E2429}|WILWebApp\\WILWebApp.csproj|c:\\users\\saaym\\downloads\\wil-completed\\wilwebapp\\wilwebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AF35394-5650-47BC-8BCE-49B3E55E2429}|WILWebApp\\WILWebApp.csproj|solutionrelative:wilwebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\saaym\\Downloads\\WIL-Completed\\WILWebApp\\WILWebApp\\Program.cs",
+              "RelativeDocumentMoniker": "WILWebApp\\Program.cs",
+              "ToolTip": "C:\\Users\\saaym\\Downloads\\WIL-Completed\\WILWebApp\\WILWebApp\\Program.cs",
+              "RelativeToolTip": "WILWebApp\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T12:36:13.918Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

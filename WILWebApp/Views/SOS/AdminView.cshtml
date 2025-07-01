@@ -1,0 +1,46 @@
+﻿@using System.Security.Claims
+@model List<WILWebApp.Entities.StudentReport>
+
+<h2 class="text-center">Admin Report View</h2>
+<div id="reportsContainer">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Incident Type</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Reported At</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <td>@report.incidentType</td>
+                    <td>@report.description</td>
+                    <td>@report.location</td>
+                    <td>@report.reportedAt.ToString("dd-MM-yyyy")</td> <!-- Format the date as needed -->
+                    <td>
+                        <form asp-action="PostEditData" asp-controller="SOS" method="post">
+                            <input type="hidden" name="Id" value="@report.Id" />
+                            <input type="text" name="Status" value="@report.status" class="form-control" />
+                
+                            <td>
+                            <button type="submit" class="btn btn-primary">Update</button>   
+                        </form>
+                    </td>
+
+                    </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center">No reports available.</p>
+    }
+</div>

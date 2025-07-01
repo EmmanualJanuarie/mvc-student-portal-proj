@@ -1,0 +1,45 @@
+﻿@model WILWebApp.Entities.StudentReport
+
+<form asp-action="PostData">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (ViewBag.Message != null)
+    {
+        <div class="form-group" style="color: green">@ViewBag.Message</div>
+    }
+    <div class="mb-2">
+        <label asp-for="incidentType" class="control-label"> Incident Type</label>
+        <input asp-for="incidentType" class="form-control" />
+        <span asp-validation-for="incidentType" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="description" class="control-label">Description</label>
+        <textarea asp-for="description" class="form-control"></textarea>
+        <span asp-validation-for="description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="location" class="control-label">Location</label>
+        <input asp-for="location" class="form-control" />
+        <span asp-validation-for="location" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="reportedAt" class="control-label">Reported At</label>
+        <input asp-for="reportedAt" class="form-control" type="date" />
+        <span asp-validation-for="reportedAt" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="status" class="control-label">Status</label>
+        <input asp-for="status" class="form-control" placeholder="pending" />
+        <span asp-validation-for="status" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Submit Report" class="btn btn-primary w-100" />
+            
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

@@ -1,0 +1,147 @@
+﻿@model WILWebApp.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    #logout_btn{
+        display:none;
+    }
+
+    /*-ICONS-*/
+    #icon_facebook {
+        position: relative;
+        left: 42%;
+        bottom: 0%; 
+  
+
+       /*border width*/
+        width: 4%;
+    }
+
+    .bi-facebook{
+        font-size: 40px;
+        cursor: pointer;
+  
+    }
+
+    #icon_github {
+        position: relative;
+        left: 43.5%;
+        bottom: 0%;
+ 
+        /*border width*/
+        width: 4%;
+
+    }
+
+    .bi-github {
+        font-size: 40px;
+        color: black;
+        cursor: pointer;
+    }
+
+    #icon_google {
+        position: relative;
+        left: 45.5%;
+        bottom: 100%;
+        
+        /*border width*/
+        width: 4%;
+    }
+
+    .bi-google{
+        font-size: 40px;
+        color: #DB4437;
+        cursor: pointer;
+    }
+
+</style>
+
+
+<h1>Login</h1>
+
+<hr />
+<div class="row">
+    <div class="mb-3">
+        <form asp-action="Login" id="loginForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="username_or_email" class="control-label"></label>
+                <input asp-for="username_or_email" class="form-control" id="emailInput" />
+                <span asp-validation-for="username_or_email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="pwd" class="control-label"></label>
+                <input asp-for="pwd" class="form-control" />
+                <span asp-validation-for="pwd" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Login" class="btn btn-primary w-100" />
+            </div>
+            
+        </form>
+        
+
+    </div>
+    
+    <p class="text-center text-decoration-underline">or Login using</p>
+    
+    <!--Logs for the third party login options-->
+  
+    <a asp-controller="Home" asp-action="Signin_facebook" id="icon_facebook" class="text-center">
+        <i class="bi bi-facebook"></i>
+    </a>
+    
+    <a asp-controller="Home" asp-action="Signin_github" id="icon_github" class="text-center">
+        <i class="bi bi-github"></i><!--X (GitHUb)-->
+    </a>
+    
+    <a asp-controller="Home" asp-action="Signin_google" id="icon_google" class="text-center">
+        <i class="bi bi-google"></i> <!--Google-->
+    </a>
+
+</div>
+
+<div class="mt-3 text-center">
+    <a asp-action="Register" onclick="removeUser_Btn()">Don't have an account? Register here.</a>
+   
+</div>
+
+
+
+@section Scripts {
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var loginForm = document.getElementById('loginForm');
+            var emailInput = document.getElementById('emailInput');
+
+            // Add event listener for form submission
+            loginForm.addEventListener('submit', function (event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Get the value of the email input
+                var emailValue = emailInput.value;
+
+                // Check if the entered email matches the specific condition
+                if (emailValue.includes("Staff" || "staff")) { // Change this to the desired email
+                    // Redirect to the desired path
+                    window.location.href = '/Chat/AdminChat'; // Change this to the desired path
+                } else if (emailValue.includes("Admin" || "admin")) { // Change this to the desired email
+                    // Redirect to the desired path
+                    window.location.href = '/Chat/AdminChat'; // Change this to the desired path
+                } else if (emailValue.includes("ctucareer.co.za")) { // Change this to the desired email
+                    // Redirect to the desired path
+                    window.location.href = '/Chat/AdminChat'; // Change this to the desired path
+                } else {
+                    // If the email does not match, submit the form normally
+                    loginForm.submit();
+                }
+            });
+        });
+    </script>
+}

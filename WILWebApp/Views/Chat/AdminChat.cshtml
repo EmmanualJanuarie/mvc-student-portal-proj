@@ -1,0 +1,25 @@
+﻿
+<h2 class="text-center">Admin Chat System</h2>
+<div class="chat-box border rounded p-3" style="height: 300px; overflow-y: scroll;">
+    <div class="row p-1">
+    </div>
+    <div class="row p-1">
+        <div class="col-6">
+            <ul id="messagesList" class="list-unstyled"></ul>
+        </div>
+    </div>
+</div>
+
+<input type="text" class="form-control" placeholder="Reply to a student..." id="messageInput" required />
+<input type="button" class="btn btn-primary mt-2 w-100" id="sendButton" style="background-color:red; border: gray;" value="Send Message" />
+
+<br />
+<br />
+<div>
+    <h3>Users in Chat</h3>
+    <hr />
+    <ul id="userList"></ul>
+</div>
+
+<script src="~/js/dist/browser/signalr.js"></script>
+<script src="~/js/chatAdmin.js"></script>

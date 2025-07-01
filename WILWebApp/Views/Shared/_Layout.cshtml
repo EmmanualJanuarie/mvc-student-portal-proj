@@ -1,0 +1,218 @@
+﻿@using System.Security.Claims
+@using StudentPortal.Controllers
+@using WILWebApp.Entities
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Student Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    
+    <!--CDN FOR BOOTSTRAP ICONS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" 
+          crossorigin="anonymous">
+    
+    <style>
+        /*-USERNAME STYLING-*/
+        #login_username {
+            position: relative;
+            right: 2%;
+            color:white;
+            font-size:20px;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" id="main_logo">Student Portal</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Index" id="home_navItem">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Chat/StudentChat" id="chat_navItem">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Chat/AdminChat" id="adminChat_navItem">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SOS/ReportForm" id="sos_navitem">SOS Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SOS/AdminView" id="sosView_navitem">Reports</a>
+                    </li>
+                </ul>
+            </div>
+           
+            <span class="left-20px" id="login_username">
+                @if (!string.IsNullOrEmpty(ViewBag.FacebookUser ?.ToString()))
+                {
+                    @ViewBag.FacebookUser 
+                }
+                else if (!string.IsNullOrEmpty(ViewBag.GoogleUser ?.ToString()))
+                {
+                    @ViewBag.GoogleUser 
+                }
+                else if (!string.IsNullOrEmpty(ViewBag.GitHubGuest?.ToString()))
+                {
+                    @ViewBag.GitHubGuest
+                }
+                else
+                {
+                    var emailClaim = @User.FindFirstValue(ClaimTypes.Name);
+                    if (!string.IsNullOrEmpty(emailClaim))
+                    {
+                        @emailClaim
+                    }
+                }
+            </span>
+            <a class="btn btn-light" href="/Account/Login" id="logout_btn">Logout</a>
+        </div>
+    </nav>
+<div class="container mt-4">
+    @{
+        var errorMessage = TempData["errorMessage"]?.ToString();
+        var successMessage = TempData["successMessage"]?.ToString();
+    }
+    @if (!string.IsNullOrWhiteSpace(successMessage))
+        {
+            <div class="alert alert-danger">
+                <b>Success : </b>@successMessage
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        else if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+            <div class="alert alert-danger">
+                <b>Error : </b>@errorMessage
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    
+
+    @RenderBody()
+</div>
+    <!--signalR setup for chat scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.12/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+        connection.start().catch(err => console.error(err.toString()));
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-pZf6DGNkz4z7nNFEOhaIUlA6YtmLMvY9Hmr8lxTwUsdv4YhW3Zt1SYw3lNJQFfIB"
+            crossorigin="anonymous">
+    </script>
+    
+
+    <!-- jQuery (if needed for any additional functionality) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7Q4I5G5jGe8mD4+5pkb/4B5zcF61PR+gqNx"
+            crossorigin="anonymous">
+    </script>
+
+    
+    <script src="js/main-page-script.js" defer></script>
+
+    <script src="~/js/link-deactivate-script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current URL path
+            var currentPath = window.location.pathname;
+
+            // Check if the current path is either Register or Login
+            if (currentPath === '/Account/Register' || currentPath === '/Account/Login') {
+                // Hide the Logout button
+                document.getElementById('logout_btn').style.display = 'none';
+
+                // Hide the Username 
+                document.getElementById('login_username').style.display = 'none';
+
+                //hide nav-items
+                document.getElementById('home_navItem').style.display = 'none';
+                document.getElementById('chat_navItem').style.display = 'none';
+                document.getElementById('sos_navitem').style.display = 'none';
+                document.getElementById('sosView_navitem').style.display = 'none';
+                document.getElementById('adminChat_navItem').style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current URL path
+            var currentPath = window.location.pathname;
+
+            // Check if the current path is either Register or Login
+            if (currentPath === '/' || currentPath === '/') {
+                
+                // Hide the Username
+                document.getElementById('login_username').style.display = 'none';
+                document.getElementById('sosView_navitem').style.display = 'none';
+                document.getElementById('adminChat_navItem').style.display = 'none';
+
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current URL path
+            var currentPath = window.location.pathname;
+
+            // Check if the current path is either Register or Login
+            if (currentPath === '/Home/Index' || '/Chat/StudentChat' || '/SOS/ReportForm') {
+
+                document.getElementById('sosView_navitem').style.display = 'none';
+                document.getElementById('adminChat_navItem').style.display = 'none';
+
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current URL path
+            var currentPath = window.location.pathname;
+
+            // Check if the current path is either Register or Login
+            if (currentPath === '/Chat/AdminChat') {
+
+                document.getElementById('sosView_navitem').style.display = 'block';
+                document.getElementById('adminChat_navItem').style.display = 'block';
+                document.getElementById('chat_navItem').style.display = 'none';
+                document.getElementById('sos_navitem').style.display = 'none';
+                document.getElementById('home_navItem').style.display = 'none';
+
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current URL path
+            var currentPath = window.location.pathname;
+
+            // Check if the current path is either Register or Login
+            if (currentPath === '/SOS/AdminView') {
+
+                document.getElementById('sosView_navitem').style.display = 'block';
+                document.getElementById('adminChat_navItem').style.display = 'block';
+                document.getElementById('chat_navItem').style.display = 'none';
+                document.getElementById('sos_navitem').style.display = 'none';
+                document.getElementById('home_navItem').style.display = 'none';
+
+            }
+        });
+
+     
+    </script>
+    
+
+   
+
+    
+    <!-- Render Scripts Section -->
+    @RenderSection("Scripts", required: false)
+    
+    </body>
+</html>

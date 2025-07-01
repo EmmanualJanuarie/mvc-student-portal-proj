@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WILWebApp", "WILWebApp\WILWebApp.csproj", "{8AF35394-5650-47BC-8BCE-49B3E55E2429}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AF35394-5650-47BC-8BCE-49B3E55E2429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF35394-5650-47BC-8BCE-49B3E55E2429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF35394-5650-47BC-8BCE-49B3E55E2429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF35394-5650-47BC-8BCE-49B3E55E2429}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D583E09A-82C7-41BF-A45B-C2A0E56AA08D}
+	EndGlobalSection
+EndGlobal

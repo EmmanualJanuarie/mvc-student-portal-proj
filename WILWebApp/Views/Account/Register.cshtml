@@ -1,0 +1,46 @@
+﻿@model WILWebApp.Models.RegistrationViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<hr />
+<div class="row">
+    <div class="mb-3">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="form-group" style="color: green">@ViewBag.Message</div>
+            }
+            <div class="mb-2">
+                <label asp-for="username" class="control-label"> Username</label>
+                <input asp-for="username" class="form-control" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="pwd" class="control-label">Password</label>
+                <input asp-for="pwd" class="form-control" />
+                <span asp-validation-for="pwd" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="email" class="control-label">Email</label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+                <input type="submit" value="Register" class="btn btn-primary w-100" />
+            
+        </form>
+    </div>
+</div>
+
+
+<div class="mt-3 text-center">
+    <a asp-action="Login">Already a user? Login here.</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
