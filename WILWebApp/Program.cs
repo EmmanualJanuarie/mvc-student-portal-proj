@@ -38,8 +38,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddGoogle(options =>
 {
-    options.ClientId = "1027336679408-f977d48j1tk74fqsa2obthbcfdf6bpp0.apps.googleusercontent.com";
-    options.ClientSecret = "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";
+    options.ClientId = "XXXX-XXXX-XXXX-XXX-XXXX"; //removed ClientId for security Purposes
+    options.ClientSecret = "XXXX-XXXX-XXXX-XXX-XXXX";//removed Client Secret for security Purposes
     options.Scope.Add("email");
     options.Scope.Add("profile");
     options.SaveTokens = true; // Save tokens for later use
@@ -47,8 +47,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddFacebook(options =>
 {
-    options.AppId = "446029134719753";
-    options.AppSecret = "6e0896a4cc45fd509387ecc11e0c78c7";
+    options.AppId = "XXXX-XXXX-XXXX-XXX-XXXX"; //removed AppId for security Purposes
+    options.AppSecret = "XXXX-XXXX-XXXX-XXX-XXXX"; //removed app secret for security purposes
     options.Scope.Add("email");
     options.Scope.Add("public_profile");
     options.SaveTokens = true; // Save tokens for later use
@@ -56,8 +56,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddGitHub(options =>
 {
-    options.ClientId = "Ov23li9LRQF7biAUv769";
-    options.ClientSecret = "e52937ad8cecdf32e802799a934c0ea7b3eef530";
+    options.ClientId = "XXXX-XXXX-XXXX-XXX-XXXX"; //removed clientId for security Purposes
+    options.ClientSecret = "XXXX-XXXX-XXXX-XXX-XXXX"; //removed Client Secret for security Purposes
     options.Scope.Add("email");
     options.Scope.Add("public_profile");
     options.SaveTokens = true; // Save tokens for later use
